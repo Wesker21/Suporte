@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Minha Página</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: black; /* Fundo preto */
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: white; /* Letras brancas */
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      padding: 30px 0;
+      font-size: 24px;
+    }
+
+    .menu {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .menu button {
+      background-color: orange;
+      color: black;
+      border: 2px solid white;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .menu button:hover {
+      background-color: white;
+      color: black;
+    }
+
+    iframe {
+      width: 90%;
+      height: 1000px;
+      border: 2px solid white;
+      margin: 40px auto;
+      display: none; /* Começa escondido */
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    Bem-vindos, motoristas Ownfleet!<br>
+    Este website tem o intuito de ajudar todos vocês com informações básicas, contato de analistas, regras de escala e texto automático de PNR!<br>
+    Salvem.
+  </header>
+
+  <div class="menu">
+    <button onclick="carregarPagina('pnr.html')">Gerador Texto PNR</button>
+    <button onclick="carregarPagina('horario.html')">Horário de Devolução</button>
+    <button onclick="carregarPagina('dispo.html')">Disponibilidade</button>
+    <button onclick="carregarPagina('contato.html')">Contato</button>
+  </div>
+
+  <iframe id="conteudo" src=""></iframe>
+
+  <script>
+    function carregarPagina(pagina) {
+      const iframe = document.getElementById('conteudo');
+      iframe.src = pagina;
+      iframe.style.display = 'block'; // Mostra o iframe após o clique
+    }
+  </script>
+
+</body>
+</html>

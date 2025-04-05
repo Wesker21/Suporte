@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Texto de PNR</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            border: none;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #222;
+            color: white;
+        }
+        button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #666;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gerador de Texto de PNR</h1>
+    <div id="inputForm">
+        <label for="info1">Digite seu nome:</label>
+        <input type="text" id="info1" required>
+        
+        <label for="info2">Digite o BR do Produto</label>
+        <input type="text" id="info2" required>
+        
+        <button onclick="gerarTexto()">Gerar Texto</button>
+    </div>
+
+    <div id="resultado" class="hidden">
+        <h2>Texto Gerado:</h2>
+        <p id="textoGerado"></p>
+        <button onclick="copiarTexto()">Copiar Texto</button>
+        <button onclick="reiniciar()">Reiniciar</button>
+    </div>
+
+    <script>
+        function gerarTexto() {
+            const info1 = document.getElementById('info1').value;
+            const info2 = document.getElementById('info2').value;
+
+            const texto = `Olá,
+
+Eu sou ${info1} entregador Shopee.
+Gostaria de confirmar se a sua entrega do pedido ${info2} ocorreu como esperado.
+Você poderia confirmar se o pacote foi recebido, por favor?
+
+Envie 1: Se já recebeu o seu pedido (Já Recebi o Pedido) 
+Envie 2: Se recebeu e não era o que pediu, ou o produto veio quebrado 
+Envie 3: Não recebido`;
+
+            document.getElementById('textoGerado').innerText = texto;
+            document.getElementById('inputForm').classList.add('hidden');
+            document.getElementById('resultado').classList.remove('hidden');
+        }
+
+        function copiarTexto() {
+            const texto = document.getElementById('textoGerado').innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('Texto copiado para a área de transferência!');
+            }).catch(err => {
+                alert('Erro ao copiar o texto: ', err);
+            });
+        }
+
+        function reiniciar() {
+            document.getElementById('info1').value = '';
+            document.getElementById('info2').value = '';
+            document.getElementById('inputForm').classList.remove('hidden');
+            document.getElementById('resultado').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
